@@ -94,10 +94,14 @@ void BinaryTree::remove(Node* root) {
 	) {
 		temp = root->left ? root->left : root->right;
 		temp->parent = root->parent;
-		if(root->parent->left == root)
-			root->parent->left = temp;
+		if(root->parent)
+			if(root->parent->left == root)
+				root->parent->left = temp;
+			else
+				root->parent->right = temp;
 		else
-			root->parent->right = temp;
+			BinaryTree::root = temp;
+
 		delete root; 
 		return;
 	}
@@ -138,7 +142,7 @@ void BinaryTree::remove(Node* root) {
 		temp->right = root->right;
 		root->right->parent = temp;
 	}
-	
+
 	if(root == BinaryTree::root)
 		BinaryTree::root = temp;
 

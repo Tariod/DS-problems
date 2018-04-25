@@ -22,7 +22,7 @@ int main() {
     while (true) {
 		cout << "Q to stop" << endl;
 		getline(cin, value);
-		if("q" == value || value.empty())
+		if("Q" == value || value.empty())
             break;
         counter++;
 		tree->insert(stoi(value));
@@ -33,8 +33,11 @@ int main() {
 
 	cout << "tree" << endl;
 	tree->printTree();
-
-    for(int i = -95; i < 99; i += 5)
+    
+    cout << "Search with insert and deleting numbers multiple N:" << endl;
+    getline(cin, value);
+    int N = stoi(value);
+    for(int i = -99 / N * N; i < 99; i += N)
         tree->findAddRemove(i);
 
     cout << "tree" << endl;
