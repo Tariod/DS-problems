@@ -77,6 +77,7 @@ BinaryTree::Node *BinaryTree::find(int value) {
 }
 
 void BinaryTree::remove(Node* root) {
+//Root without children;
 	if(!root->left && !root->right) {
 		if(root->parent->left == root)
 			root->parent->left = NULL;
@@ -85,6 +86,7 @@ void BinaryTree::remove(Node* root) {
 		delete root; 
 		return;
 	}
+//Root with one child;
 	Node *temp;
 	if(
 		(!root->left && !!root->right) ||
@@ -102,7 +104,7 @@ void BinaryTree::remove(Node* root) {
 
 	temp = findReplacement(root);
 
-	//Change child of the temp->parent;
+//Change child of the temp->parent;
 	if(root->right != temp && root->left != temp)
 		if(temp->parent->left == temp) {
 			if(temp->right) {
@@ -118,15 +120,16 @@ void BinaryTree::remove(Node* root) {
 				temp->parent->right = NULL;
 		}
 
-	//Change child of the root->parent on the temp;
+//Change child of the root->parent on the temp;
 	temp->parent = root->parent;
-	if(root->parent->left == root)
-			root->parent->left = temp;
-		else
-			root->parent->right = temp;
+	if(root->parent)
+		if(root->parent->left == root)
+				root->parent->left = temp;
+			else
+				root->parent->right = temp;
 
 
-	//Change temp's children on the children of the root;
+//Change temp's children on the children of the root;
 	if(root->left != temp) {
 		temp->left = root->left;
 		root->left->parent = temp;
@@ -135,6 +138,9 @@ void BinaryTree::remove(Node* root) {
 		temp->right = root->right;
 		root->right->parent = temp;
 	}
+	
+	if(root == BinaryTree::root)
+		BinaryTree::root = temp;
 
 	delete root;
 };

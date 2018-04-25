@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <ctime>
 #include "BinaryTree.h"
 using namespace std;
@@ -7,19 +8,39 @@ int randNumber();
 
 int main() {
     srand(time(NULL));
-    BinaryTree *tree1 = new BinaryTree(randNumber());
+    BinaryTree *tree;
+    int counter = 0;
+    string value;
+    cout << "Enter the value of the root:" << endl;
+	getline(cin, value);
+    if(!value.empty())
+        tree = new BinaryTree(stoi(value));
+    else
+        tree = new BinaryTree(randNumber());
+    counter++;
 
-    for(int i = 0; i < 14; i++)
-        tree1->insert(randNumber());
+    while (true) {
+		cout << "Q to stop" << endl;
+		getline(cin, value);
+		if("q" == value || value.empty())
+            break;
+        counter++;
+		tree->insert(stoi(value));
+	}
 
-	cout << "tree1" << endl;
-	tree1->printTree();
+    for(;counter < 14; counter++)
+        tree->insert(randNumber());
+
+	cout << "tree" << endl;
+	tree->printTree();
 
     for(int i = -95; i < 99; i += 5)
-        tree1->findAddRemove(i);
+        tree->findAddRemove(i);
 
-    cout << "tree1" << endl;
-    tree1->printTree();
+    cout << "tree" << endl;
+    tree->printTree();
+
+    delete tree;
     return 0;
 }
 
