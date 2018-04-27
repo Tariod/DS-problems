@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <ctime>
-#include "BinaryTree.h"
+#include "../binary-tree/BinaryTree.h"
 using namespace std;
 
 int randNumber();
