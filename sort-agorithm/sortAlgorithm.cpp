@@ -61,7 +61,7 @@ void sortAlgorithm::ShellSort(int *arrayToSort, int size) {
         for(i = k; i < size; i++) {
             temp = arrayToSort[i];
             for(j = i; j >= k; j -= k) {
-                if(temp > sortAlgorithm::array[j - k])
+                if(temp > arrayToSort[j - k])
                     arrayToSort[j] = arrayToSort[j - k];
                 else
                     break;
