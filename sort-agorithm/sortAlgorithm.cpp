@@ -47,3 +47,25 @@ int sortAlgorithm::PartitionLomuto(int *arrayToSort, int begin, int end) {
 	swap(arrayToSort[++partition], arrayToSort[end]);
 	return partition;
 };
+
+int *sortAlgorithm::ShellSort() {
+    int *copy = copyArray();
+    ShellSort(copy, sortAlgorithm::size);
+    return copy;
+};
+
+void sortAlgorithm::ShellSort(int *arrayToSort, int size) {
+    int i,j,k;
+    int temp;
+    for(k = size / 2; k > 0; k /= 2)
+        for(i = k; i < size; i++) {
+            temp = arrayToSort[i];
+            for(j = i; j >= k; j -= k) {
+                if(temp > sortAlgorithm::array[j - k])
+                    arrayToSort[j] = arrayToSort[j - k];
+                else
+                    break;
+            }
+            arrayToSort[j] = temp;
+        }
+};

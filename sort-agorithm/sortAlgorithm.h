@@ -14,6 +14,8 @@ public:
 
     int *QuickSort(int begin, int end);
 
+    int *ShellSort();
+
     int size;
 
     int *array;
@@ -22,5 +24,7 @@ private:
     void QuickSort(int *arrayToSort, int begin, int end);
 
     int PartitionLomuto(int *array, int begin, int end);
+
+    void ShellSort(int *arrayToSort, int size);
 };
 #endif

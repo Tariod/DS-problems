@@ -12,7 +12,7 @@ int main() {
         std::cout << array[i] << " ";
     std::cout << std::endl;
     sortAlgorithm test = sortAlgorithm(array, size);
-    int *arr = test.QuickSort(0, size - 1);
+    int *arr = test.ShellSort();
     for(int i = 0; i < size; i++)
         std::cout << arr[i] << " ";
     std::cout << std::endl;
